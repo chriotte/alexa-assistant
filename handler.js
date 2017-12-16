@@ -443,17 +443,20 @@ var handlers = {
                 // Deal with RESULTS TYPE
                 else if (ConverseResponse.converse_response == RESULT){
                     console.log('Result received');
+                    var close_connection_word = 'stop google'; //if this word is said, Alexa closes the connection to google
                     // check there is actually a value in result
                     if (ConverseResponse.result ){
-
                         if (ConverseResponse.result.spoken_request_text){
                           console.log('Request text is: '+ JSON.stringify(ConverseResponse.result.spoken_request_text));
                             googleUtternaceText = JSON.stringify(ConverseResponse.result.spoken_request_text);
-                           
+
                         }
                         if (ConverseResponse.result.microphone_mode){
                             if (ConverseResponse.result.microphone_mode == 'CLOSE_MICROPHONE'){
-                                microphoneOpen = false;
+
+                                microphoneOpen = true;
+        
+
                                 console.log('closing microphone');
                             } else if (ConverseResponse.result.microphone_mode == 'DIALOG_FOLLOW_ON'){
                                 microphoneOpen = true;
